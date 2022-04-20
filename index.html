@@ -30,31 +30,66 @@
       .content {
         padding: 10px;
       }
+
+      .content-body {
+          display: none;
+      }
+
+      .show-by-default {
+          display: block;
+      }
+
+      .tab-active {
+          background-color: darkgrey;
+      }
+
     </style>
   </head>
   <body>
     <div class="container">
       <div class="selector">
-        <div class="tab">Shirts</div>
+        <div class="tab tab-active">Shirts</div>
         <div class="tab">Pants</div>
         <div class="tab">Shoes</div>
 
     </div>
     <div class="content">
-      <div class="content-body">
+      <div id="Shirts" class="content-body show-by-default">
         <h4>Shirts</h4>
         <p>Our shirts are all of the highest quality</p>
       </div>
-      <div class="content-body">
+      <div id="Pants" class="content-body">
         <h4>Pants</h4>
         <p>Pants can be custom fitted</p>
       </div>
-      <div class="content-body">
+      <div id="Shoes" class="content-body">
         <h4>Shoes</h4>
         <p>Shoes are in US sizes</p>
       </div>
     </div>
     </div>
-    <script></script>
+    <script>
+        //add click listner to each tab by selecting tab class and loop through
+        function setNewActive(el) {
+            var contentBodies = document.getElementsByClassName('content-body');
+            for (var contentBody of contentBodies) {
+                contentBody.classList.remove('show-active')
+            }
+
+            document.getElementById(el.textContent).classList.add('show-active')
+        }
+            //function to remove show-active class and add to clicked
+                //select .content-body
+                //remove .show-active
+                //add .show-active back when clicked
+
+    var tabs = document.getElementsByClassName('tab');
+    for (var tab of tabs) {
+        tab.addEventListener('click', function(e) {
+setNewActive(e.currentTarget);
+
+        })
+    }
+    </script>
   </body>
 </html>
