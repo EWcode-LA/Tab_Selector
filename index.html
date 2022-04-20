@@ -37,10 +37,20 @@
 
       .show-by-default {
         display: block;
+        animation: fade 1s;
       }
 
       .tab-active {
         background-color: darkgrey;
+      }
+
+      @keyframes fade {
+          from {
+              opacity: 0;
+          }
+          to {
+              opacity: 1;
+          }
       }
     </style>
   </head>
@@ -74,6 +84,12 @@
           contentBody.classList.remove("show-by-default");
         }
         document.getElementById(el.textContent).classList.add("show-by-default");
+
+        var tabs = document.getElementsByClassName("tab");
+        for (var tab of tabs) {
+            tab.classList.remove("tab-active");
+        }
+        el.classList.add("tab-active");
       }
       //function to remove show-active class and add to clicked
       //select .content-body
